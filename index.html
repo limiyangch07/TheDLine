@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The D-line</title>
+  <style>
+    :root {
+      --primary: #466cf4;
+      --primary-light: #6a8eff;
+      --background: #f3f4f6;
+      --white: #ffffff;
+      --gray-light: #f9fafb;
+      --gray-dark: #1f2937;
+      --gray-muted: #6b7280;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: var(--background);
+      color: var(--gray-dark);
+      line-height: 1.6;
+    }
+    header, section, footer {
+      padding: 20px;
+    }
+    header {
+      background: var(--white);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: background 0.3s;
+    }
+    header:hover {
+      background: var(--primary-light);
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-circle {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      color: var(--white);
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .logo-text {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--primary);
+    }
+    .nav-link {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-link:hover {
+      color: var(--primary-light);
+      text-decoration: underline;
+    }
+    .hero {
+      background: var(--primary);
+      color: var(--white);
+      text-align: center;
+      padding: 80px 20px;
+      border-bottom-left-radius: 40px;
+      border-bottom-right-radius: 40px;
+    }
+    .hero h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      margin-bottom: 20px;
+      font-size: 20px;
+    }
+    .btn {
+      background: var(--white);
+      color: var(--primary);
+      padding: 12px 24px;
+      font-weight: bold;
+      border-radius: 9999px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .btn:hover {
+      background: #f1f1f1;
+      transform: translateY(-2px);
+    }
+    .features {
+      background: var(--white);
+      text-align: center;
+      padding: 60px 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    .features h2 {
+      font-size: 28px;
+      margin-bottom: 30px;
+      color: var(--primary);
+    }
+    .features-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .feature-item {
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 8px;
+      background: #fafafa;
+      transition: transform 0.3s;
+    }
+    .feature-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .cta {
+      background: var(--primary);
+      color: var(--white);
+      text-align: center;
+      padding: 60px 20px;
+      border-top-left-radius: 40px;
+      border-top-right-radius: 40px;
+    }
+    .cta h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    .cta p {
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+    footer {
+      text-align: center;
+      font-size: 14px;
+      color: var(--gray-muted);
+      background: var(--gray-light);
+      padding: 20px 0;
+      border-top: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+        <img src="The D-Line.png" alt="Logo The D-line" style="height: 40px;">
+        <div class="logo-text">The D-line</div>
+    </div>      
+  </header>
+
+  <section class="hero">
+    <h1>Atur Harimu dengan The D-line</h1>
+    <p>To-do list sederhana, cepat, dan tanpa ribet.</p>
+    <a href="#mulai" class="btn">Coba Sekarang</a>
+  </section>
+
+  <section class="features">
+    <h2>Fitur Utama</h2>
+    <div class="features-list">
+      <div class="feature-item">✔️ Mudah Digunakan</div>
+      <div class="feature-item">📱 Multi Perangkat</div>
+      <div class="feature-item">📝 Tambah & Kelola Tugas</div>
+    </div>
+  </section>
+
+  <section class="cta" id="mulai">
+    <h2>Langsung Mulai</h2>
+    <p>Tidak perlu login. Mulai produktif sekarang juga.</p>
+    <a href="login.html" class="btn">Buka Aplikasi</a>
+  </section>
+
+  <footer>
+    &copy; 2025 The D-line
+  </footer>
+
+</body>
+</html>
