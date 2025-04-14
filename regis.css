@@ -9,7 +9,7 @@ body {
     height: 100vh;
 }
 
-.regis {
+.regis-container {
     display: flex;
     align-items: center;
     background-color: #ffffff;
@@ -17,9 +17,10 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 90%;
     max-width: 650px;
-    height: 350px;
+    height: auto;
     padding: 20px;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 .logo {
@@ -59,11 +60,11 @@ label {
     font-size: 14px;
     color: #333;
     margin-bottom: 5px;
-    align-self: first baseline;
+    align-self: start;
 }
 
 input[type="text"],
-input[type="password"], 
+input[type="password"],
 input[type="email"] {
     width: 95%;
     padding: 10px;
@@ -72,27 +73,10 @@ input[type="email"] {
     font-size: 14px;
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus, 
-input[type="email"]:focus {
+input:focus {
     outline: none;
     border-color: #466cf4;
     box-shadow: 0 0 4px rgba(70, 108, 244, 0.5);
-}
-
-.regis {
-    margin: 10px 0;
-    text-align: center;
-}
-
-.regis a {
-    color: #466cf4;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.regis a:hover {
-    text-decoration: underline;
 }
 
 button {
@@ -116,14 +100,42 @@ button:active {
     background-color: #2a449b;
 }
 
+.regis-link {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.regis-link a {
+    color: #466cf4;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.regis-link a:hover {
+    text-decoration: underline;
+}
+
 @media (max-width: 768px) {
-    .regis {
+    .regis-container {
         flex-direction: column;
         text-align: center;
+        height: auto;
         padding: 15px;
     }
 
     .logo img {
         max-width: 200px;
+    }
+
+    button {
+        width: 100%;
+    }
+    .formregis {
+        width: 100%;
+    }
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+        width: 95%;
     }
 }
