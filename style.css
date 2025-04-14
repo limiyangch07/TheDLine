@@ -59,6 +59,7 @@ label {
     font-size: 14px;
     color: #333;
     margin-bottom: 5px;
+    text-align: left;
 }
 
 input[type="text"],
@@ -116,11 +117,34 @@ button:active {
 @media (max-width: 768px) {
     .login {
         flex-direction: column;
-        text-align: center;
         padding: 15px;
+        height: auto;
+    }
+
+    .logo {
+        margin-bottom: 15px;
     }
 
     .logo img {
-        max-width: 200px;
+        max-width: 150px;
+        width: 100%;
+        height: auto;
+    }
+
+    .formlogin {
+        width: 100%;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    label {
+        text-align: left;
     }
 }
