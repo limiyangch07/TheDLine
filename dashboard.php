@@ -167,6 +167,42 @@ $koneksi->close();
             });
         }
     }
+
+    function searchTasks() {
+    const input = document.getElementById('search-box').value.toLowerCase();
+    const resultsContainer = document.getElementById('search-results');
+    resultsContainer.innerHTML = '';
+
+    if (input.length === 0) return;
+
+    const allTasks = document.querySelectorAll('.task');
+    const today = new Date().toISOString().split('T')[0];
+
+    allTasks.forEach(task => {
+        const titleElement = task.querySelector('strong');
+        const title = titleElement.textContent.toLowerCase();
+        const id = task.getAttribute('data-id');
+        const deadlineText = task.querySelector('p').textContent.trim();
+        const match = deadlineText.match(/Deadline: (\d{4}-\d{2}-\d{2})/);
+        let isOverdue = false;
+
+        if (match) {
+            const deadlineDate = match[1];
+            isOverdue = deadlineDate < today;
+        }
+
+        if (title.includes(input) || isOverdue) {
+            const li = document.createElement('li');
+            const link = document.createElement('a');
+            link.href = `#task-${id}`;
+            link.textContent = `${titleElement.textContent} (${isOverdue ? 'Lewat Deadline' : 'Aktif'})`;
+            li.appendChild(link);
+            resultsContainer.appendChild(li);
+        }
+    });
+}
+
+
     </script>
     <style>
         .completed1 {
@@ -205,8 +241,13 @@ $koneksi->close();
         <input type="date" id="task-deadline" name="task-deadline" min="<?= date('Y-m-d') ?>" required>
         <div id="sub-task-container"></div>
         <button type="button" onclick="addSubTaskFieldForm('sub-task-container', 'new')">Tambah Sub Tugas</button>
-        <button type="submit">Tambah</button>
+        <button type="submit" onclick="alert('Tugas telah ditambahkan!')">Tambah</button>
     </form>
+
+    <h4>Cari Tugas</h4>
+        <input type="text" id="search-box" placeholder="Cari judul tugas..." onkeyup="searchTasks()">
+        <ul id="search-results" style="list-style:none; padding:0;"></ul>
+
     
     <h4>Daftar Tugas</h4>
     <?php foreach ($non_overdue_tasks as $id => $tugas_data): ?>
@@ -222,7 +263,7 @@ $koneksi->close();
     ?>
     <div class="task <?= (count($tugas_data["sub_tugas"]) > 0 && array_reduce($tugas_data["sub_tugas"], function($carry, $sub) {
         return $carry && ($sub['status'] === 'done');
-    }, true)) ? 'completed' : '' ?>" data-id="<?= $id ?>">
+    }, true)) ? 'completed' : '' ?>" data-id="<?= $id ?>" id="task-<?= $id ?>">
         <div class="juduldandeadline">
             <strong><?= htmlspecialchars($judul) ?></strong>
             <p class="<?= $deadline_class ?>">Deadline: <?= $deadline ? htmlspecialchars($deadline) : 'No deadline set' ?></p>
@@ -247,17 +288,17 @@ $koneksi->close();
         <form id="edit-form-<?= $id ?>" action="edit_tugas.php" method="POST" style="display:none;">
             <input type="hidden" name="task-id" value="<?= $id ?>">
             <input type="text" name="task-title" value="<?= htmlspecialchars($judul) ?>" required>
-            <input type="date" name="task-deadline" value="<?= htmlspecialchars($deadline) ?>" required>
+            <input type="date" name="task-deadline" value="<?= htmlspecialchars($deadline) ?>" min="<?= date('Y-m-d')?>" required>
             <div id="subtaskcontaineredit"></div>
             <button type="button" onclick="addSubTaskField('subtaskcontaineredit', <?= $id ?>)">Tambah Sub Tugas</button>
-            <button type="submit">Simpan</button>
+            <button type="submit" onclick="return confirm('Apakah Anda yakin ingin merubah data?');">Simpan</button>
         </form>
     </div>
     <?php endforeach; ?>
 
     <h4>Tugas Lewat Deadline</h4>
     <?php foreach ($overdue_tasks as $id => $tugas_data): ?>
-    <div class="task">
+    <div class="task" data-id="<?= $id ?>" id="task-<?= $id ?>">
         <div class="juduldandeadline">
             <strong><?= htmlspecialchars($tugas_data["judul"]) ?></strong>
             <p class="deadline-mendekati">Deadline: <?= htmlspecialchars($tugas_data["deadline"]) ?></p>
