@@ -244,12 +244,13 @@ $koneksi->close();
         <button type="submit" onclick="alert('Tugas telah ditambahkan!')">Tambah</button>
     </form>
 
-    <h4>Cari Tugas</h4>
-        <input type="text" id="search-box" placeholder="Cari judul tugas..." onkeyup="searchTasks()">
-        <ul id="search-results" style="list-style:none; padding:0;"></ul>
-
-    
-    <h4>Daftar Tugas</h4>
+    <div class="task-header">
+          <h4>Daftar Tugas</h4>
+        <div class="search-box-container">
+            <input type="text" id="search-box" placeholder="Cari judul..." onkeyup="searchTasks()">
+        </div>
+    </div>
+    <ul id="search-results" style="list-style:none; padding:0;"></ul>
     <?php foreach ($non_overdue_tasks as $id => $tugas_data): ?>
     <?php
         $judul = $tugas_data["judul"] ?? 'No title';
