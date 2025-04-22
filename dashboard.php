@@ -72,6 +72,15 @@ $koneksi->close();
     <title>The D-Line</title>
     <link rel="stylesheet" href="dashboard.css">
     <script>
+    window.onload = function () {
+        const popup = document.getElementById('welcome-popup');
+        popup.style.display = 'block';
+
+        document.getElementById('close-popup').onclick = function () {
+            popup.style.display = 'none';
+        };
+    };
+        
     function addSubTaskFieldForm(containerId, taskId) {
         const container = document.getElementById(containerId);
         const div = document.createElement("div");
@@ -220,9 +229,41 @@ $koneksi->close();
             color: red;
             font-weight: bold;
         }
+        #welcome-popup {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.6);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #welcome-popup .popup-content {
+            background: white;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        #welcome-popup .popup-content button {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
+    <div id="welcome-popup">
+        <div class="popup-content">
+            <h3>Selamat Datang, <?= htmlspecialchars($user_nama) ?>!</h3>
+            <p>Semoga harimu produktif 🎯</p>
+            <button id="close-popup">Tutup</button>
+        </div>
+    </div>
+    
     <div class="header">
         <div class="namaaplikasi">
             <h2>The D-Line</h2>
